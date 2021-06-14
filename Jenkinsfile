@@ -5,11 +5,16 @@ pipeline {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "maven"
     }
+    
+    parameters{
+        string(name: 'Company', defaultValue: 'PS', description: 'Enter the name of your Company')
+    }
 
     stages {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
+                echo "Welcome to ${params.Company}"
                 git 'https://github.com/vsushruth/sapient-freshers-2021-jun-asde.git'
 
                 // Run Maven on a Unix agent.
