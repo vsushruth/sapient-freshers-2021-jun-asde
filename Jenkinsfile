@@ -8,8 +8,8 @@ pipeline {
     
     parameters{
         string(name: 'Company', defaultValue: 'PS', description: 'Enter the name of your Company')
-        booleanParam(name: 'DEBUG_BUILD', defaultValue: true, description: 'do you want to buidl with debug')
-	    choice(name: 'env', choices: ['DEV', 'TEST', 'PROD'], description: 'specify you build env') 
+        booleanParam(name: 'Run Test Cases', defaultValue: true, description: 'Do you want to run test cases while building?')
+        choice(name: 'env', choices: ['DEV', 'PROD'], description: 'Specify the build environment') 
     }
 
     stages {
@@ -30,14 +30,6 @@ pipeline {
                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
-            // post {
-            //     // If Maven was able to run the tests, even if some of the test
-            //     // failed, record the test results and archive the jar file.
-            //     success {
-            //         junit '**/target/surefire-reports/TEST-*.xml'
-            //         archiveArtifacts 'target/*.jar'
-            //     }
-            // }
         }
     }
 }
