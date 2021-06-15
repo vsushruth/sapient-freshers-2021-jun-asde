@@ -15,11 +15,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Welcome to ${params.Company}"
-                echo "ENV : ${env}"
-                echo "BUILD_WITH DEBUG : ${DEBUG_BUILD}"
-
-                echo "************** Running ${env.BUILD_ID} on ${env.JENKINS_URL}***********"
                 
                 git 'https://github.com/vsushruth/sapient-freshers-2021-jun-asde.git'
 
