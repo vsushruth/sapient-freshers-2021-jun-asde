@@ -21,8 +21,9 @@ pipeline {
                 // Run Maven on a Unix agent.
                 //sh "mvn -Dmaven.test.failure.ignore=true clean package"
                 sh "mvn clean install"
-                bat "docker image build -t java-app ."
-                bat "docker run java-app:latest"
+                sh "systemctl start docker"
+                sh "docker image build -t java-app ."
+                sh "docker run java-app:latest"
 
                 // To run Maven on a Windows agent, use
 //                 bat "mvn clean install"
