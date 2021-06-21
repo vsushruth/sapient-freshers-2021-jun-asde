@@ -16,7 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 
-                git 'https://github.com/vsushruth/sapient-freshers-2021-jun-asde.git'
+                git branch:"jenkins-works", url:'https://github.com/vsushruth/sapient-freshers-2021-jun-asde.git'
 
                 // Run Maven on a Unix agent.
                 //sh "mvn -Dmaven.test.failure.ignore=true clean package"
