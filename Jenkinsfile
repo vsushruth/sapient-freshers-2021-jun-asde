@@ -6,11 +6,11 @@ pipeline {
         maven "maven"
     }
     
-    parameters{
-        string(name: 'Company', defaultValue: 'PS', description: 'Enter the name of your Company')
-        booleanParam(name: 'Run Test Cases', defaultValue: true, description: 'Do you want to run test cases while building?')
-        choice(name: 'env', choices: ['DEV', 'PROD'], description: 'Specify the build environment') 
-    }
+//     parameters{
+//         string(name: 'Company', defaultValue: 'PS', description: 'Enter the name of your Company')
+//         booleanParam(name: 'Run Test Cases', defaultValue: true, description: 'Do you want to run test cases while building?')
+//         choice(name: 'env', choices: ['DEV', 'PROD'], description: 'Specify the build environment') 
+//     }
 
     stages {
         stage('Build') {
@@ -22,7 +22,9 @@ pipeline {
                 //sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                 // To run Maven on a Windows agent, use
-                bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                bat "mvn clean install"
+                bat "docker image build -t java-app ."
+                bat "docker run java-app:latest"
             }
 
         }
